@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+  labels:
+    name: argocd
+spec:
+  project: argocd
+
+  # Source of the application manifests
+  source:
+    repoURL: https://github.com/Gowtham029/k8s-default-apps.git  # Can point to either a Helm chart repo or a git repo.
+    targetRevision: main  # For Helm, this refers to the chart version.
+    path: overlays/test  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
+
+  # Destination cluster and namespace to deploy the application
+  destination:
+    # cluster API URL
+    server: https://kubernetes.default.svc
+    # or cluster name
+    # name: in-cluster
+    # The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
+    namespace: argocd
+          
+  # Sync policy
+  syncPolicy:
+    automated: 
+      prune: true 
+      selfHeal: true
+      allowEmpty: false 
+    syncOptions:     
+    - CreateNamespace=true
+    # The retry feature is available since v1.7
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
+  revisionHistoryLimit: 3

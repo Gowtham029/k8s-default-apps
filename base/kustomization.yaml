@@ -1,0 +1,9 @@
+resources:
+  - https://raw.githubusercontent.com/argoproj/argo-cd/v2.10.1/manifests/install.yaml
+  - application.yaml
+  - project.yaml
+  - secrets.yaml
+  - ingress.yaml
+
+commonLabels:
+  app.kubernetes.io/instance: argocd
