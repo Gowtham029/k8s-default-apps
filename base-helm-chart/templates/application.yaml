@@ -30,7 +30,7 @@ spec:
 
     {{- if $application.valueFiles }}
     helm:
-      skipCrds: {{ $application.skipCrds | default true }}
+      skipCrds: {{ $application.skipCrds | default false }}
       releaseName: {{ $application.releaseName }}
       {{- with $application.valueFiles }}
       valueFiles:
