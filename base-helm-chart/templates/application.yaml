@@ -10,9 +10,9 @@ metadata:
   namespace: argocd
   labels:
     app-type: argocd
-    app-name: argocd
+    app-name: {{ $application.name }}
     argocd-project: {{ $project.name }}
-    env: {{ $env.name }}
+    env: {{ $env }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:

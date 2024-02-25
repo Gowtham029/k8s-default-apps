@@ -1,6 +1,6 @@
 nameOverride: 
 fullnameOverride: 
-env: test
+env: main
 create: true
 sourceRepository:
   ops: https://github.com/Gowtham029/k8s-default-apps.git
