@@ -17,10 +17,8 @@ spec:
     path: ./base-helm-chart/
     helm:
       valueFiles:
-      - test-apps.yaml
-      - values.yaml
-
-  # Destination cluster and namespace to deploy the application
+        - test-apps.yaml
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: default
