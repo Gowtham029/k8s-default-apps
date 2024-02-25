@@ -9,3 +9,4 @@ projects:
       namespace: kubernetes-dashboard
       valueFiles:
         - values.yaml
+        - values.yaml
