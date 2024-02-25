@@ -2,7 +2,7 @@ nameOverride:
 fullnameOverride: 
 env: main
 create: true
-sourceRepository:
+sourceRepos:
   ops: https://github.com/Gowtham029/k8s-default-apps.git
 
 destinations:

@@ -12,7 +12,7 @@ spec:
 
   # Allow manifests to deploy from any Git repos
   sourceRepos:
-  - '*'
+  - 'https://github.com/Gowtham029/k8s-default-apps.git'
 
   # Only permit applications to deploy to the guestbook namespace in the same cluster
   # Destination clusters can be identified by 'server', 'name', or both.
