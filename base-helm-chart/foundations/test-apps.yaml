@@ -1,0 +1,12 @@
+projects:
+- name: foundation-apps
+  applications:
+    - name: kubernetes-dashboard
+      repo: "{{ .Values.sourceRepos.ops }}"
+      revision: main
+      releaseName: kubernetes-dashboard
+      valueFiles:
+      - values.yaml
+      # - test-values.yaml
+      destination: "{{ .Values.destinations.default }}"
+      namespace: kubernetes-dashboard

@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: foundation-apps
+  namespace: argocd
+  labels:
+    name: foundation-apps
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: foundation-apps
+
+  # Source of the application manifests
+  source:
+    repoURL: https://github.com/Gowtham029/k8s-default-apps.git  # Can point to either a Helm chart repo or a git repo.
+    targetRevision: main  # For Helm, this refers to the chart version.
+    path: ./base-helm-chart
+    helm:
+      valueFiles:
+      - values.yaml
+      - foundations/test-apps.yaml
+
+  # Destination cluster and namespace to deploy the application
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+          
+  # Sync policy
+  syncPolicy:
+    automated: 
+      prune: true 
+      selfHeal: true
+    syncOptions:     
+    - CreateNamespace=true
+    - PruneLast=true

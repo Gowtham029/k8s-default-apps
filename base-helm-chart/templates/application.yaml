@@ -1,0 +1,59 @@
+{{- if .Values.create }}
+{{- $env := .Values.env }}
+{{- range $project := .Values.projects }}
+{{- range $application := .applications }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $application.name }}
+  namespace: argocd
+  labels:
+    app-type: argocd
+    app-name: argocd
+    argocd-project: {{ $project.name }}
+    env: {{ $env.name }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ $project.name }}
+
+  # Source of the application manifests
+  source:
+    repoURL: {{ tpl $application.repo $ }}
+    {{- if $application.path }}
+    path: foundations/{{ $application.path }}
+    {{- else}}
+    path: foundations/{{ $application.releaseName }}
+    {{- end }}
+    targetRevision: {{ $application.revision }}
+
+    {{- if $application.valueFiles }}
+    helm:
+      skipCrds: {{ $application.skipCrds | default true }}
+      releaseName: {{ $application.releaseName }}
+      {{- with $application.valueFiles }}
+      valueFiles:
+        - {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- end }}
+
+  # Destination cluster and namespace to deploy the application
+  destination:
+    # cluster API URL
+    server: {{ tpl $application.destination $ }}
+    namespace: {{ $application.namespace }}
+          
+  # Sync policy
+  syncPolicy:
+    automated: 
+      prune: {{ $application.prune | default true }} 
+      selfHeal: {{ $application.selfHeal | default true }}  
+    syncOptions:     
+    - CreateNamespace={{ $application.createns | default true }}
+    - ServerSideApply={{ $application.serverSideApply | default false }}
+    - Replace={{ $application.replace | default false }}
+    
+{{- end }}
+{{- end }}
+{{- end }}

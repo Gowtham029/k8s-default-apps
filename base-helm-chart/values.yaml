@@ -1,0 +1,15 @@
+nameOverride: 
+fullnameOverride: 
+env: test
+create: true
+sourceRepository:
+  ops: https://github.com/Gowtham029/k8s-default-apps.git
+
+destinations:
+  default: https://kubernetes.default.svc
+  # Enable it based on the environment
+  
+  # prod: https://kubernetes.default.svc
+  # dev: https://kubernetes.default.svc
+  # test: https://kubernetes.default.svc
+  # uat: https://kubernetes.default.svc

@@ -1,0 +1,13 @@
+apiVersion: v2
+name: kubernetes-dashboard
+version: 7.0.0-alpha2
+appVersion: "v3.0.0-alpha0"
+description: Web UI for Kubernetes clusters
+keywords:
+  - kubernetes
+  - dashboard
+home: https://github.com/kubernetes/dashboard
+sources:
+  - https://github.com/kubernetes/dashboard
+icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
+kubeVersion: ">=1.21.0-0"
