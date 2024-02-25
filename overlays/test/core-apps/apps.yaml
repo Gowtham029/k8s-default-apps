@@ -17,8 +17,8 @@ spec:
     path: ./base-helm-chart/
     helm:
       valueFiles:
-      - values.yaml
       - test-apps.yaml
+      - values.yaml
 
   # Destination cluster and namespace to deploy the application
   destination:
