@@ -7,6 +7,5 @@ projects:
       releaseName: kubernetes-dashboard
       valueFiles:
       - values.yaml
-      # - test-values.yaml
       destination: "{{ .Values.destinations.default }}"
       namespace: kubernetes-dashboard
