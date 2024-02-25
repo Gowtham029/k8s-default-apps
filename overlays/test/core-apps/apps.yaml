@@ -17,7 +17,7 @@ spec:
     path: ./base-helm-chart/
     helm:
       valueFiles:
-        - test-apps.yaml
+        # - test-apps.yaml
         - values.yaml
   destination:
     server: https://kubernetes.default.svc
