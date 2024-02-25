@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # General configuration shared across resources
-app:
+kuberntes-dashboard:
   image:
     pullPolicy: IfNotPresent
     pullSecrets: []
