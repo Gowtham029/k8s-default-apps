@@ -19,7 +19,6 @@ spec:
       valueFiles:
       - values.yaml
       - test-apps.yaml
-      - test-apps1.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: default
