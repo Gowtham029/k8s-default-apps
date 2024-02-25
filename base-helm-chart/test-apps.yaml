@@ -5,7 +5,7 @@ projects:
       repo: "{{ .Values.sourceRepos.ops }}"
       revision: main
       releaseName: kubernetes-dashboard
-      # valueFiles:
-      # - values.yaml
       destination: "{{ .Values.destinations.default }}"
       namespace: kubernetes-dashboard
+      valueFiles:
+        - values.yaml
